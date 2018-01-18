@@ -10,13 +10,13 @@ def litado():
         lista.append('%-15s %s'%(key,value))
     while lista != []:
         print(' | ',end = '')
-        for i in range(3):
+        for i in range(5):
             try:
                 print(lista[i], end=' | ')
             except:
                 pass
         print('\n')
-        for i in range(3):
+        for i in range(5):
             try:
                 del lista[0]
             except:
@@ -26,24 +26,29 @@ def save():
     pickle.dump(dicio,arq)
     arq.close()
 while True:
-    print()
-    print("Digite sucodeuva para parar")
-    print("Digite listado para listar")
+    print("Digite 'sucodeuva' para parar")
+    print("Digite 'listar' para listar")
+    print("Digite 'deletar' para excluir uma palavra.")
     b= str(input("Digite a palavra: ")).lower()
     b = b.replace(' ','')
     os.system('CLS')
     while b == '':
         os.system('CLS')
         print('Palavra invalida!!')
-        print("Digite sucodeuva para parar")
-        print("Digite listado para listar")
+        print("Digite 'sucodeuva' para parar")
+        print("Digite 'listar' para listar")
+        print("Digite 'deletar' para excluir uma palavra.")
         b= str(input("Digite a palavra: ")).lower()
         b = b.replace(' ','')
         os.system('CLS')
     if b == 'sucodeuva':
         break
-    if b == 'listado':
+    if b == 'listar':
         litado()
+        continue
+    if b == "deletar":
+        c = str(input("Digite a palavra que deseja deletar: ")).lower()
+        del dicio[c]
         continue
     if b not in dicio:
         print('A palavra \"%s\" nunca foi vista!Adicionada ao programa.'%b)
