@@ -46,7 +46,8 @@ def commandos(): #lista de comandos do programa
     print("Digite 'listar' para listar")
     print("Digite 'deletar' para excluir uma palavra.")
     print("Digite 'recente' para listar as ultimas palavras adicionadas.")
-    print("Digite 'pesquisar' para pesquisar uma palavra.") ##*
+    print("Digite 'pesquisar' para pesquisar uma palavra.")
+    print("Digite 'txt' para criar um arquivo de texto com todas as palavras.")
     
 while True:
     commandos()
@@ -61,12 +62,23 @@ while True:
         b= str(input("Digite a palavra: ")).lower()
         b = b.replace(' ','')
         system('CLS')
-    if b == 'sucodeuva':
+    
+    if b == 'sucodeuva': #encerra o programa
         break
-    if b == 'listar':
+    
+    if b == 'listar': #lista no shell as palavras que ja foram adicionadas
         litado()
         continue
-    if b == "deletar":
+    
+    if b == 'txt': #cria um txt com todas as palavras e as pontuaçoes
+        arq2 = open('texto.txt','w')
+        for key,value in sorted(dict.items(dicio)):
+            arq2.write("%-13s %s\n"%(key,value))
+        arq2.close()
+        print("O arquivo de texto foi criado com sucesso.")
+        continue
+        
+    if b == "deletar": #deleta uma palavra
         litado()
         c = str(input("Digite a palavra que deseja deletar: ")).lower()
         
