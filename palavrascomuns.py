@@ -1,7 +1,7 @@
 #palavras populares
 import pickle
 from os import system
-import webbrowser ##biblitoteca web
+import webbrowser
 invalido = ' 1234567890!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
 try: #verifica se é a primeira vez abrindo o programa
     arq = open('dicionario.pck','rb')
@@ -13,10 +13,12 @@ except: # caso seja a primeira vez, cria o arquivo de dump
     pickle.dump(dicio,arq)
     pickle.dump(recentee,arq)
     arq.close()
+
 arq = open('dicionario.pck','rb')
 dicio = pickle.load(arq)
 recentee = pickle.load(arq)
 arq.close()
+
 def litado():
     lista = []
     for key,value in sorted(dict.items(dicio)):
@@ -45,7 +47,7 @@ def commandos(): #lista de comandos do programa
     print("Digite 'deletar' para excluir uma palavra.")
     print("Digite 'recente' para listar as ultimas palavras adicionadas.")
     print("Digite 'pesquisar' para pesquisar uma palavra.") ##*
-
+    
 while True:
     commandos()
     b= str(input("Digite a palavra: ")).lower()
@@ -67,7 +69,7 @@ while True:
     if b == "deletar":
         litado()
         c = str(input("Digite a palavra que deseja deletar: ")).lower()
-
+        
         try: #tenta deletar a palavra que o usuario digitou
             system('CLS')
             del dicio[c]
@@ -81,7 +83,7 @@ while True:
                 recentee[i] = "%s (deletada)" %c
         save()
         continue
-
+    
     if b == "recente": #printa as ultimas 5 palavras adicionadas
         system('CLS')
         for i in range(len(recentee)):
@@ -96,11 +98,11 @@ while True:
         system('CLS')
         continue
 
-    if len(recentee) > 4: #adicionando
+    if len(recentee) > 4: #adicionando  
         del recentee[0]   #as
     recentee.append(b)    #5 ultimas
 
-
+    
     if b not in dicio:
         print('A palavra \"%s\" nunca foi vista!Adicionada ao programa.'%b)
         dicio[b] = 1
@@ -125,3 +127,6 @@ while True:
             print("A palavra \"%s\" ja foi vista porem ainda nao atingiu os pontos necessarios." %b)
             dicio[b]+=1
     save()
+
+
+
